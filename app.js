@@ -1,6 +1,5 @@
 // Imports -----------------------------------------------------------------------------------------------------------------
 const Discord = require("discord.js");
-const YAML = require("yamljs");
 const request = require("request-promise");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -10,24 +9,11 @@ const os = require("os");
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
+require('dotenv').config();
+
 
 // Config and functions -----------------------------------------------------------------------------------------------------------------
-const defaultConfig = {
-    listenPort: 8088,
-    callbackURL: "/callback",
-    discord: {
-        username: "my-bot",
-        token: "",
-        guild: "0",
-        channel: "0"
-    },
-    groupme: {
-        name: "",
-        botId: "",
-        accessToken: ""
-    }
-};
-var config;
+
 var tempDir = path.join(os.tmpdir(), "groupme-discord-bridge");
 
 function download(url, filename, callback) {
@@ -70,14 +56,21 @@ try {
     // Already exists
 }
 
-try {
-    config = YAML.load("bridgeBot.yml");
-} catch(e) {
-    console.error("Could not load bridgeBot.yml, perhaps it doesn't exist? Creating it...");
-    fs.writeFileSync("bridgeBot.yml", YAML.stringify(defaultConfig, 4));
-    console.error("Configuration file created. Please fill out the fields and then run the bot again.")
-    process.exit(1);
-}
+const config = {
+    listenPort: process.env.LISTEN_PORT,
+    callbackURL: process.env.CALLBACK_URL,
+    discord: {
+        username: process.env.DISCORD_BOT_USERNAME,
+        token: process.env.DISCORD_BOT_TOKEN,
+        guild: process.env.DISCORD_SERVER,
+        channel: process.env.DISCORD_CHANNEL
+    },
+    groupme: {
+        name: process.env.GROUPME_NAME,
+        botId: process.env.GROUPME_BOT_ID,
+        accessToken: process.env.GROUPME_ACCESS_TOKEN
+    }
+};
 
 const discordClient = new Discord.Client();
 const expressApp = express();
