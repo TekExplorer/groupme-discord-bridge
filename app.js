@@ -57,7 +57,7 @@ try {
 }
 
 const config = {
-    listenPort: process.env.LISTEN_PORT,
+    listenPort: process.env.PORT,
     callbackURL: process.env.CALLBACK_URL,
     discord: {
         username: process.env.DISCORD_BOT_USERNAME,
