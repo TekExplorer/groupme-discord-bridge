@@ -9,7 +9,7 @@ const os = require("os");
 const fs = require("fs");
 const path = require("path");
 const process = require("process");
-#require('dotenv').config();
+//require('dotenv').config();
 
 
 // Config and functions -----------------------------------------------------------------------------------------------------------------
