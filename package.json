@@ -4,7 +4,8 @@
   "description": "A bridge bot which connects a GroupMe chat and a Discord Guild",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
