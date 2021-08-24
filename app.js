@@ -156,8 +156,8 @@ console.log("Check 0.5!");
     var sender = req.body.name;
     var attachments = req.body.attachments;
 console.log("Check 1!");
-console.log(typeof discordGuild);
-console.log(typeof discordChannel);
+console.log("discordGuild: " + typeof discordGuild);
+console.log("discordChannel: " + typeof discordChannel);
 	if (attachments.length > 0) {
 		let image = false;
 		switch (attachments[0].type) {
