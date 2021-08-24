@@ -20,7 +20,7 @@ const defaultConfig = {
     discord: {
         username: process.env.DISCORD_BOT_USERNAME,
         token: process.env.DISCORD_BOT_TOKEN,
-        guild: discordClient.guilds.first.value,//process.env.DISCORD_SERVER,
+        guild: stringify(discordClient.guilds.first.value),//process.env.DISCORD_SERVER,
         channel: 879495020468637736 //process.env.DISCORD_CHANNEL
     },
     groupme: {
