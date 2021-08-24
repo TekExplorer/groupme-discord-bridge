@@ -95,11 +95,8 @@ discordClient.on("ready", () => {
     discordChannel = discordGuild.channels.get(config.discord.channel);
     console.log(typeof discordChannel);
 
-    discordGuild.channels.every((channel, key, col) => printChannel );
 });
-function printChannel(channel, key, col) {
-    console.log(channel.toString);
-}
+
 
 discordClient.on("presenceUpdate", (oldMember, newMember) => {
     let author = oldMember.nickname == null ? oldMember.user.username : oldMember.nickname;
@@ -120,6 +117,8 @@ discordClient.on("presenceUpdate", (oldMember, newMember) => {
 });
 
 discordClient.on("message", (message) => {
+    console.log(message.channel);
+    
     if(message.author.username === config.discord.username) return;
     if(message.channel.id !== config.discord.channel) return;
     if((message.content == null || message.content == "") && message.attachments.size == 0) return;
