@@ -11,6 +11,8 @@ const fs = require("fs");
 const path = require("path");
 const process = require("process");
 
+const discordClient = new Discord.Client();
+
 // Config and functions -----------------------------------------------------------------------------------------------------------------
 const defaultConfig = {
     listenPort: process.env.PORT,
@@ -18,7 +20,7 @@ const defaultConfig = {
     discord: {
         username: process.env.DISCORD_BOT_USERNAME,
         token: process.env.DISCORD_BOT_TOKEN,
-        guild: discordClient.guild,//process.env.DISCORD_SERVER,
+        guild: discordClient.guilds.first.value,//process.env.DISCORD_SERVER,
         channel: 879495020468637736 //process.env.DISCORD_CHANNEL
     },
     groupme: {
@@ -81,7 +83,7 @@ try {
     process.exit(1);
 }
 
-const discordClient = new Discord.Client();
+// const discordClient = new Discord.Client();
 const expressApp = express();
 expressApp.use(bodyParser.json());
 var discordGuild;
