@@ -13,21 +13,21 @@ const process = require("process");
 
 // Config and functions -----------------------------------------------------------------------------------------------------------------
 const defaultConfig = {
-    listenPort: 8088,
-    callbackURL: "/callback",
+    listenPort: process.env.PORT,
+    callbackURL: process.env.CALLBACK_URL,
     discord: {
-        username: "my-bot",
-        token: "",
-        guild: "0",
-        channel: "0"
+        username: process.env.DISCORD_BOT_USERNAME,
+        token: process.env.DISCORD_BOT_TOKEN,
+        guild: process.env.DISCORD_SERVER,
+        channel: process.env.DISCORD_CHANNEL
     },
     groupme: {
-        name: "",
-        botId: "",
-        accessToken: ""
+        name: process.env.GROUPME_NAME,
+        botId: process.env.GROUPME_BOT_ID,
+        accessToken: process.env.GROUPME_ACCESS_TOKEN
     }
 };
-var config;
+var config = defaultConfig;
 var tempDir = path.join(os.tmpdir(), "groupme-discord-bridge");
 
 function download(url, filename, callback) {
