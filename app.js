@@ -120,7 +120,7 @@ discordClient.on("message", (message) => {
     // if (message.channel.name == "group-me") {
     //     discordChannel = message.channel;
     // }
-    // console.log(message.message.channel.name);
+    console.log(message.content);
 
     if(message.author.username === config.discord.username) return;
     if(message.channel.id !== config.discord.channel) return;
