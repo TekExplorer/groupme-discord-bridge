@@ -21,7 +21,7 @@ const defaultConfig = {
         username: process.env.DISCORD_BOT_USERNAME,
         token: process.env.DISCORD_BOT_TOKEN,
         guild: process.env.DISCORD_SERVER,
-        channel: 879378067871629353 //process.env.DISCORD_CHANNEL
+        channel: process.env.DISCORD_CHANNEL
     },
     groupme: {
         name: process.env.GROUPME_NAME,
@@ -92,7 +92,7 @@ var discordChannel;
 discordClient.on("ready", () => {
     console.log("Discord Client Ready.");
     discordGuild = discordClient.guilds.get(config.discord.guild);
-    discordChannel = discordGuild.channels.get(config.discord.channel);
+    discordChannel = discordClient.channels.get(config.discord.channel);
     console.log(typeof discordChannel);
 
 });
@@ -118,7 +118,7 @@ discordClient.on("presenceUpdate", (oldMember, newMember) => {
 
 discordClient.on("message", (message) => {
     console.log(message.channel);
-    
+
     if(message.author.username === config.discord.username) return;
     if(message.channel.id !== config.discord.channel) return;
     if((message.content == null || message.content == "") && message.attachments.size == 0) return;
