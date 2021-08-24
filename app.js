@@ -92,7 +92,7 @@ var discordChannel;
 discordClient.on("ready", () => {
     console.log("Discord Client Ready.");
     discordGuild = discordClient.guilds.get(config.discord.guild);
-    discordChannel = discordClient.channels.get(config.discord.channel);
+    discordChannel = discordClient.channels.cache.get(config.discord.channel);
     console.log(typeof discordChannel);
 
 });
