@@ -148,11 +148,12 @@ discordClient.on("message", (message) => {
 expressApp.post(config.callbackURL, (req, res) => {
 	console.log("Message Found!");
     if(req.body.name == config.groupme.name) return;
+console.log("Check 0.5!");
 
     var text = req.body.text;
     var sender = req.body.name;
     var attachments = req.body.attachments;
-
+console.log("Check 1!");
 	if (attachments.length > 0) {
 		let image = false;
 		switch (attachments[0].type) {
@@ -182,6 +183,8 @@ expressApp.post(config.callbackURL, (req, res) => {
 			default:
 				console.log("Unknown attachment: " + attachments[0].type);
 		}
+		console.log("Check 2!");
+
     } else {
         discordChannel.send("**" + sender + "**: " + text);
     }
