@@ -32,7 +32,7 @@ var tempDir = path.join(os.tmpdir(), "groupme-discord-bridge");
 
 function download(url, filename, callback) {
     request.head(url, (err, res, body) => {
-        let downloadedLocation = path.join(tempDir, filename)
+        let downloadedLocation = path.join(tempDir, filename);
         let contentType = res.headers['content-type'];
 
         request(url).pipe(fs.createWriteStream(downloadedLocation)).on('close', () => callback(contentType, downloadedLocation));
@@ -77,7 +77,7 @@ try {
 } catch(e) {
     console.error("Could not load bridgeBot.yml, perhaps it doesn't exist? Creating it...");
     fs.writeFileSync("bridgeBot.yml", YAML.stringify(defaultConfig, 4));
-    console.error("Configuration file created. Please fill out the fields and then run the bot again.")
+    console.error("Configuration file created. Please fill out the fields and then run the bot again.");
     process.exit(1);
 }
 
@@ -91,7 +91,7 @@ discordClient.on("ready", () => {
     console.log("Discord Client Ready.");
     discordGuild = discordClient.guilds.get(config.discord.guild);
     discordChannel = discordGuild.channels.get(config.discord.channel);
-});
+}); // Discord.GuildChannel
 
 discordClient.on("presenceUpdate", (oldMember, newMember) => {
     let author = oldMember.nickname == null ? oldMember.user.username : oldMember.nickname;
@@ -186,7 +186,7 @@ console.log("Check 1!");
 		console.log("Check 2!");
 
     } else {
-        discordChannel.send("**" + sender + "**: " + text);
+       // discordChannel.send("**" + sender + "**: " + text);
     }
 });
 
