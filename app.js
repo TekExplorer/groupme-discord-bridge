@@ -146,8 +146,7 @@ discordClient.on("message", (message) => {
 });
 
 expressApp.post(config.callbackURL, (req, res) => {
-	console.log("Req: " + JSON.stringify(req));
-	console.log("Res: " + JSON.stringify(res));
+	console.log("Message Found!");
     if(req.body.name == config.groupme.name) return;
 
     var text = req.body.text;
