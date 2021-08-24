@@ -89,10 +89,10 @@ expressApp.use(bodyParser.json());
 var discordGuild;
 var discordChannel;
 
-discordClient.on("ready", () => {
+discordClient.on("ready", async () => {
     console.log("Discord Client Ready.");
-    discordGuild = discordClient.guilds.get(config.discord.guild);
-    discordChannel = discordGuild.channels.get(config.discord.channel);
+    discordGuild = await discordClient.guilds.get(config.discord.guild);
+    discordChannel = await discordGuild.channels.get(config.discord.channel);
 }); // Discord.GuildChannel
 
 discordClient.on("presenceUpdate", (oldMember, newMember) => {
