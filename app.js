@@ -117,10 +117,10 @@ discordClient.on("presenceUpdate", (oldMember, newMember) => {
 });
 
 discordClient.on("message", (message) => {
-    if (message.channel.name == "group-me") {
-        discordChannel = message.channel;
-    }
-    console.log(message.message.channel.name);
+    // if (message.channel.name == "group-me") {
+    //     discordChannel = message.channel;
+    // }
+    // console.log(message.message.channel.name);
 
     if(message.author.username === config.discord.username) return;
     if(message.channel.id !== config.discord.channel) return;
@@ -156,13 +156,13 @@ discordClient.on("message", (message) => {
 });
 
 expressApp.post(config.callbackURL, (req, res) => {
-	console.log("Message Found!");
+	// console.log("Message Found!");
     if(req.body.name == config.groupme.name) return;
 
     var text = req.body.text;
     var sender = req.body.name;
     var attachments = req.body.attachments;
-console.log("Check 1!");
+// console.log("Check 1!");
 	if (attachments.length > 0) {
 		let image = false;
 		switch (attachments[0].type) {
@@ -192,7 +192,7 @@ console.log("Check 1!");
 			default:
 				console.log("Unknown attachment: " + attachments[0].type);
 		}
-		console.log("Check 2!");
+		// console.log("Check 2!");
 
     } else {
        discordChannel.send("**" + sender + "**: " + text);
