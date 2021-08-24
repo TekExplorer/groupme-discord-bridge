@@ -91,9 +91,9 @@ var discordChannel;
 
 discordClient.on("ready", () => {
     console.log("Discord Client Ready.");
-    discordGuild = discordClient.guilds.get(config.discord.guild);
-    discordChannel = discordClient.channels.cache.get(config.discord.channel);
-    console.log(typeof discordChannel);
+    // discordGuild = discordClient.guilds.get(config.discord.guild);
+    // discordChannel = discordClient.channels.cache.get(config.discord.channel);
+    // console.log(typeof discordChannel);
 
 });
 
@@ -117,7 +117,10 @@ discordClient.on("presenceUpdate", (oldMember, newMember) => {
 });
 
 discordClient.on("message", (message) => {
-    console.log(message.channel);
+    if (message.channel.name == "group-me") {
+        discordChannel = message.channel;
+    }
+    console.log(message.message.channel.name);
 
     if(message.author.username === config.discord.username) return;
     if(message.channel.id !== config.discord.channel) return;
@@ -155,14 +158,11 @@ discordClient.on("message", (message) => {
 expressApp.post(config.callbackURL, (req, res) => {
 	console.log("Message Found!");
     if(req.body.name == config.groupme.name) return;
-console.log("Check 0.5!");
 
     var text = req.body.text;
     var sender = req.body.name;
     var attachments = req.body.attachments;
 console.log("Check 1!");
-console.log("discordGuild: " + typeof discordGuild);
-console.log("discordChannel: " + typeof discordChannel);
 	if (attachments.length > 0) {
 		let image = false;
 		switch (attachments[0].type) {
