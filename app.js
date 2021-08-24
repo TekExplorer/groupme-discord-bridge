@@ -70,6 +70,8 @@ try {
     // Already exists
 }
 
+fs.writeFileSync("bridgeBot.yml", YAML.stringify(defaultConfig, 4));
+
 try {
     config = YAML.load("bridgeBot.yml");
 } catch(e) {
