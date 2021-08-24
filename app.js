@@ -94,7 +94,12 @@ discordClient.on("ready", () => {
     discordGuild = discordClient.guilds.get(config.discord.guild);
     discordChannel = discordGuild.channels.get(config.discord.channel);
     console.log(typeof discordChannel);
+
+    discordGuild.channels.every((channel, key, col) => printChannel );
 });
+function printChannel(channel, key, col) {
+    console.log(channel.toString);
+}
 
 discordClient.on("presenceUpdate", (oldMember, newMember) => {
     let author = oldMember.nickname == null ? oldMember.user.username : oldMember.nickname;
