@@ -21,7 +21,7 @@ const defaultConfig = {
         username: process.env.DISCORD_BOT_USERNAME,
         token: process.env.DISCORD_BOT_TOKEN,
         guild: process.env.DISCORD_SERVER,
-        channel: 879378067871629353 //process.env.DISCORD_CHANNEL
+        channel: process.env.DISCORD_CHANNEL
     },
     groupme: {
         name: process.env.GROUPME_NAME,
